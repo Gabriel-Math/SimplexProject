@@ -3,32 +3,59 @@
     <div class="panel-heading">Solução Passo a Passo...</div>
     <div class="panel-body">
     <!-- ESTOU FAZENDO ISSO -->
-    <div class="divisor">
-	    <table class="table table-striped">
-		 	<tr>
-       			<% for i in 0..@number_variables-1 %>
-        			<th>X<%= i+1 %></th>
-       			<%end%>
-       			<% for i in 0..@number_restriction - 1 %>
-          			<th>F<%= i + 1 %></th>
-       			<% end %>
-          		<th>Z</th>
-        	</tr>
-        	<% @matrix.each_with_index do |linha, idx| %>
-	        	<tr>
-		        	<% linha[1..-1].each_with_index do |line, inx| %>
-			            <td> 
-				            <% line.each do |x| %>
-				            	<%= x %>
-				            	<p> testa </p>
-				            <% end %>
-			            </td>
-		            <% end %> 
-		        </tr>
-	        <% end %>
-	    </table>
-    </div>
+
+    <% @matrix.each do |linha| %> <!-- PARA CADA NOVA TABELA NA MATRIZ, CRIA UMA NOVA TABELA NO HTML -->
+      <table>
+        <tr>
+
+          <% for i in 0..@number_variables - 1 %>
+            <th>
+              X<%= i+1 %>    
+            </th>
+          <%end%>
+
+          <% for i in 0..@number_restriction - 1 %>
+            <th>
+              F<%= i + 1 %>
+            </th>
+          <% end %>
+          
+          <th>
+            Z
+          </th>
+
+        </tr> <!-- MOSTRAR OS VALORES -->
+
+          <% linha[1..-1].each_with_index do |line, inx| %>
+            <td> 
+              <% line.each do |x| %>
+                <%= x %>
+                <p> testa </p>
+              <% end %>
+            </td>
+          <% end %> 
+          
+
+        <tr>
+          
+        </tr>
+      </table>
+    <% end %>
+
+  
+
+
     <!-- ESTOU FAZENDO ISSO -->
     </div>
   </div>
 </div>
+
+<style>
+table {
+  margin-bottom: 25px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+</style>
